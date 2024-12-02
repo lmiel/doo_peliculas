@@ -6,12 +6,22 @@ from .models import Movie, Playlist, Recommendation
 from .serializers import MovieSerializer, PlaylistSerializer, RecommendationSerializer
 from django.http import JsonResponse
 from .utils import fetch_popular_movies, fetch_movie_details
+from .scripts.import_movies import fetch_and_store_movies
 
 
 # Vista Home para plantillas
 def home(request):
+    print("Requesting home")
+    # fetch_and_store_movies()
     movies = Movie.objects.all()
     return render(request, 'home.html', {'movies': movies})
+
+# Vista Home para plantillas
+def base(request):
+    print("Requesting home")
+    # fetch_and_store_movies()
+    # movies = Movie.objects.all()
+    return render(request, 'base.html')
 
 # Vistas para la API
 class MovieListView(APIView):

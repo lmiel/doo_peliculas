@@ -1,0 +1,4 @@
+djangorestframework-simplejwt
+python-decouple
+requests
+django-bootstrap4

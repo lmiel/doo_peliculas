@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import MovieListView, MovieDetailView, PlaylistView, RecommendationView, home
+from .views import MovieListView, MovieDetailView, PlaylistView, RecommendationView, home, base
 from .views import popular_movies, movie_details
 
 app_name = 'streaming'
@@ -7,6 +7,7 @@ app_name = 'streaming'
 
 urlpatterns = [
     path('', home, name='home'),
+    path('base/', base, name='base'),
     path('api/popular/', popular_movies, name='popular-movies'),
     path('api/movie/<int:movie_id>/', movie_details, name='movie-details'),
     path('api/movies/', MovieListView.as_view(), name='movie-list'),
