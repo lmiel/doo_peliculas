@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from .models import Movie, Playlist, Recommendation
 from .serializers import MovieSerializer, PlaylistSerializer, RecommendationSerializer
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from .utils import fetch_popular_movies, fetch_movie_details
 from .scripts.import_movies import fetch_and_store_movies
 
@@ -75,10 +75,11 @@ def popular_movies(request):
         return JsonResponse({'error': str(e)}, status=500)
 
 def movie_details(request, movie_id):
-    """Vista para obtener detalles de una película."""
+    """Vista para mostrar detalles de una película usando la API de TMDb."""
     try:
-        data = fetch_movie_details(movie_id)
-        return JsonResponse(data, safe=False)
+        # Llamar a la función que interactúa con la API de TMDb
+        movie_data = fetch_movie_details(movie_id)
+        # Renderizar los datos en la plantilla
+        return render(request, 'movie_detail.html', {'movie': movie_data})
     except Exception as e:
-        return JsonResponse({'error': str(e)}, status=500)
-
+        return HttpResponse(f"Error al obtener detalles de la película: {str(e)}", status=500)

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ movie.title }}{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-4">
+            <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="{{ movie.title }}" class="img-fluid">
+        </div>
+        <div class="col-md-8">
+            <h1>{{ movie.title }}</h1>
+            <p><strong>Descripción:</strong> {{ movie.overview }}</p>
+            <p><strong>Fecha de estreno:</strong> {{ movie.release_date }}</p>
+            <p><strong>Puntuación:</strong> {{ movie.vote_average }}/10</p>
+            <a href="{% url 'streaming:home' %}" class="btn btn-danger">Volver a la página principal</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

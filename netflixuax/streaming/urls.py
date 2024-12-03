@@ -11,6 +11,7 @@ urlpatterns = [
     path('api/popular/', popular_movies, name='popular-movies'),
     path('api/movie/<int:movie_id>/', movie_details, name='movie-details'),
     path('api/movies/', MovieListView.as_view(), name='movie-list'),
+    path('movie/<int:movie_id>/', movie_details, name='movie-details-page'),
     path('api/movies/<int:pk>/', MovieDetailView.as_view(), name='movie-detail'),
     path('api/playlists/', PlaylistView.as_view(), name='playlist'),
     path('api/recommendations/', RecommendationView.as_view(), name='recommendation'),
